@@ -61,6 +61,18 @@ public class TaskControllerTest {
     }
 
     @Test
+    void testGetById() throws Exception {
+        Task task = new Task(1L,"Task 1"," New Task");
+        when(taskService.getById(1L)).thenReturn(task);
+
+        //assert and act
+        mockMvc.perform(get("/tasks/1")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1));
+    }
+
+    @Test
     void testGetAllTasks() throws Exception {
         //arrange
         List<Task> taskLists = Arrays.asList(

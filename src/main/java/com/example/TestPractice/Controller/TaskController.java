@@ -4,10 +4,7 @@ import com.example.TestPractice.Model.Task;
 import com.example.TestPractice.Service.TaskService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,6 +24,11 @@ public class TaskController {
     @PostMapping
     public Task createTask(@Valid Task task){
         return taskService.createTask(task);
+    }
+
+    @GetMapping("/{id}")
+    public Task getByID(@PathVariable Long id){
+        return taskService.getById(id);
     }
 
 
